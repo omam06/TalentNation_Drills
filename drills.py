@@ -66,4 +66,68 @@ print()
 def clean_words(words):
     return [nulist.lower() for eachthing in words if (nulist := eachthing.strip()) != ""]
 print(clean_words([" Apple ","BANANA"," mango "]))
+print()
 
+
+#Implement grade_label(score). Return A for scores from 90 to 100, B for scores from 80 to 89, C for scores from 70 to 79, and F for scores below 70. If the score is less than 0 or greater than 100, return Invalid score. This fixes common comparison and branch-order bugs.
+def grade_label(score):
+    if score < 0 or score > 100:
+        return "Invalid score" 
+    elif score >= 90 and score <=100:
+        return "A"
+    elif score >= 80 and score <= 89:
+        return "B"
+    elif score >= 70 and score <= 79:
+        return "C"
+    elif score < 70:
+        return "F"
+
+print(grade_label(95))
+print(grade_label(85))
+print(grade_label(40))
+print()
+
+#Implement password_strength(password). Return Weak if the password has fewer than 8 characters. Return Medium if it has at least 8 characters but does not contain both letters and digits. Return Strong if it has at least 8 characters and contains at least one letter and at least one digit. Students may need to research isalpha and isdigit.
+def password_strength(password):
+    if len(password) < 8:
+        return "Weak"
+
+    has_letter = False
+    has_digit = False
+
+    for char in password:
+        if char.isalpha():
+            has_letter = True
+        if char.isdigit():
+            has_digit = True
+    if has_letter is True and has_digit is True:
+        return "Strong"
+    
+    else:
+        return "Medium"
+print(password_strength("abc12345"))
+print(password_strength("abcdefgh"))
+print(password_strength("abc12"))
+print()
+
+#Implement access_gate(age, has_id, is_banned). Use guard-clause style. Return Too young if age is less than 18. Return No ID if has_id is false. Return Banned if is_banned is true. Return Allowed only if all checks pass.
+def access_gate(age, has_id, is_banned):
+    if not isinstance(age, int):
+        return "Age must be a number"
+    if not isinstance(has_id, bool):
+        return "has_id must have a boolean value"
+    if not isinstance(is_banned, bool):
+        return "is_banned must be a bool"
+   
+    
+    if age < 18:
+        return "Too young"
+    if has_id is False:
+        return "No ID"
+    if is_banned is True:
+        return "Banned"
+    
+    return "Allowed"
+print(access_gate(25, True, False))
+print(access_gate(17, True, False))
+print(access_gate(25, False, False))
